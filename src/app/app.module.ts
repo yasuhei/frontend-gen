@@ -19,13 +19,16 @@ import { NgxMaskModule } from 'ngx-mask';
 import { ListaDeServicosComponent } from './componentes/listarServicos/lista-de-servicos/lista-de-servicos.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
+import { NovosClientesComponent } from './componentes/novos-clientes/novos-clientes.component';
+import { ClienteUpdateService } from 'src/utils/cliente-update';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     AppComponent,
     ClientesComponent,
-    ListaDeServicosComponent
+    ListaDeServicosComponent,
+    NovosClientesComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,7 @@ import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
     MatNativeDateModule,
     NgxMaskModule.forRoot()
   ],
-  providers: [{provide: MAT_DATE_LOCALE, useValue: 'pt'}],
+  providers: [{provide: MAT_DATE_LOCALE, useValue: 'pt'},ClienteUpdateService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

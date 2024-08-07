@@ -31,7 +31,7 @@ export class ClientesComponent implements OnInit {
 
   ngOnInit(): void {
     this.userForm = this.fb.group({
-      descricao: ['', Validators.required],
+      descricao: ['', Validators.required, Validators.minLength(5)],
       preco: ['', Validators.required],
       dataAbertura: ['', Validators.required],
       dataFinalizacao: ['', Validators.required],

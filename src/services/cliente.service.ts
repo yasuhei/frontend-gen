@@ -24,6 +24,10 @@ export class ClienteService {
   }
 
 
+  criarCliente(body: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/clientes/criar`,body, {observe: 'response'}).pipe(catchError(this.handleError));
+
+  }
 
 
 
