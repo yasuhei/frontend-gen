@@ -1,7 +1,7 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
-import { IServicosResponse, IStatus } from 'src/app/componentes/models/cliente.models';
+import { IServicoResponse, IServicosRequest, IStatus } from 'src/app/componentes/models/cliente.models';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -13,24 +13,23 @@ export class OrdensService {
 
   constructor(private http: HttpClient) {}
 
-  buscarServicos(): Observable<IServicosResponse> {
-    return this.http.get<IServicosResponse>(`${this.apiUrl}/ordemServicos`);
+  buscarServicos(): Observable<IServicoResponse[]> {
+    return this.http.get<IServicoResponse[]>(`${this.apiUrl}/ordemServicos`);
   }
 
-  criarServico(body: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/ordemServicos`,body, {observe: 'response'}).pipe(catchError(this.handleError));
+  criarServico(body: IServicosRequest): Observable<HttpResponse<IServicosRequest>> {
+    return this.http.post<IServicosRequest>(`${this.apiUrl}/ordemServicos`,body, {observe: 'response'}).pipe(catchError(this.handleError));
 
   }
 
-  atualizarStatus(body: IStatus): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/ordemServicos/atualizar-status`,body, {observe: 'response'}).pipe(catchError(this.handleError));
+  atualizarStatus(body: IStatus): Observable<HttpResponse<IStatus>> {
+    return this.http.put<IStatus>(`${this.apiUrl}/ordemServicos/atualizar-status`,body, {observe: 'response'}).pipe(catchError(this.handleError));
 
   }
 
   deletarUmServico(id: number): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/ordemServicos/${id}`, {observe: 'response'}).pipe(catchError(this.handleError));
   }
-
 
 
   private handleError(error: HttpErrorResponse) {

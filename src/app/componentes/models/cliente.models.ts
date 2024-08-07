@@ -8,12 +8,10 @@ export interface IServicoResponse {
   clientId: string | null;
 }
 
-export interface IServicosResponse {
-  todosServicos: IServicoResponse[];
-}
+
 
 export interface IServicosRequest {
-  id: number
+  id?: number
   descricao: string
   preco: number
   dataAbertura: string
@@ -33,13 +31,13 @@ export interface IServicosRequest {
 
  }
  export interface IClientes {
-  clients: Client[]
+  clients: Client[];
 }
 
 export interface Client {
-  id: string
-  nome: string
-  email: string
-  telefone: string
-  endereco: string
+  id?: string;
+  nome: string;
+  email: string;
+  telefone: string;
+  endereco: string;
 }
