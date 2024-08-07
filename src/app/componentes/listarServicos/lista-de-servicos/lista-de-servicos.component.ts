@@ -28,9 +28,14 @@ export class ListaDeServicosComponent implements OnInit {
 
   ngOnInit() {
 
-    this.clienteService.buscarListaDeOrdensDeUnicoCliente(this.data.id).subscribe((res) => {
-      this.dataSource = res || [];
-    })
+    this.clienteService.buscarListaDeOrdensDeUnicoCliente(this.data.id).subscribe({
+      next: (res: IServicoResponse[]) => {
+        this.dataSource = res;
+      },
+      error: (error) => {
+        console.error('Falha ao buscar ordens de serviço', error);
+      }
+    });
 
   }
 

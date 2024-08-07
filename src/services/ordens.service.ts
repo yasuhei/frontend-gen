@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
-import { IServicosResponse, IStatus } from 'src/app/componentes/models/cliente.models';
+import { IServicoResponse, IStatus } from 'src/app/componentes/models/cliente.models';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -13,8 +13,8 @@ export class OrdensService {
 
   constructor(private http: HttpClient) {}
 
-  buscarServicos(): Observable<IServicosResponse> {
-    return this.http.get<IServicosResponse>(`${this.apiUrl}/ordemServicos`);
+  buscarServicos(): Observable<IServicoResponse[]> {
+    return this.http.get<IServicoResponse[]>(`${this.apiUrl}/ordemServicos`);
   }
 
   criarServico(body: any): Observable<any> {

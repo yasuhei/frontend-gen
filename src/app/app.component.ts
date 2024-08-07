@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClienteService } from 'src/services/cliente.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { IServicoResponse } from './componentes/models/cliente.models';
+import { Client, IClientes, IServicoResponse } from './componentes/models/cliente.models';
 import { MatDialog } from '@angular/material/dialog';
 import { ClientesComponent } from './componentes/servicosCliente/clientes.component';
 import { ListaDeServicosComponent } from './componentes/listarServicos/lista-de-servicos/lista-de-servicos.component';
@@ -17,7 +17,7 @@ import { ClienteUpdateService } from 'src/utils/cliente-update';
 })
 export class AppComponent  implements OnInit {
   displayedColumns: string[] = [ 'nome', 'email', 'telefone', 'endereco', 'actions', 'detalhes'];
-  dataSource: IServicoResponse[] = [];
+  dataSource: Client[] = [];
   public subscription : Subscription = new Subscription()
 
   constructor(
@@ -46,7 +46,7 @@ export class AppComponent  implements OnInit {
 
   private loadClientes() {
     this.clienteService.buscarClientes().subscribe({
-      next: (response) => {
+      next: (response: IClientes) => {
         this.dataSource = response.clients || [];
       },
       error: (error) => {
