@@ -11,7 +11,7 @@ export interface IServicoResponse {
 
 
 export interface IServicosRequest {
-  id: number
+  id?: number
   descricao: string
   preco: number
   dataAbertura: string

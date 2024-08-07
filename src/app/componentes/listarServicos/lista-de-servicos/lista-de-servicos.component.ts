@@ -3,7 +3,7 @@ import { IServicoResponse, IStatus } from '../../models/cliente.models';
 import { ClienteService } from 'src/services/cliente.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { OrdensService } from 'src/services/ordens.service';
 
@@ -33,7 +33,9 @@ export class ListaDeServicosComponent implements OnInit {
         this.dataSource = res;
       },
       error: (error) => {
-        console.error('Falha ao buscar ordens de serviço', error);
+        this.snackBar.open('Falha ao buscar ordens de serviço', 'Fechar', {
+          duration: 2000,
+        });
       }
     });
 
@@ -41,19 +43,19 @@ export class ListaDeServicosComponent implements OnInit {
 
   updateStatus(id: number, status: string) {
     const body = { id, status };
-    this.ordemService.atualizarStatus(body).subscribe((response) => {
-      this.snackBar.open(`O campo status foi alterado para ${status}`, 'Fechar', {
-        duration: 2000,
-      });
-    }, (error: HttpErrorResponse) => {
-      this.snackBar.open('Erro ao atualizar o status.', 'Fechar', {
-        duration: 2000,
-      });
-      throwError(error)
-
+    this.ordemService.atualizarStatus(body).subscribe({
+      next: (response: HttpResponse<IStatus>) => {
+        this.snackBar.open(`O campo status foi alterado para ${status}`, 'Fechar', {
+          duration: 2000,
+        });
+      },
+      error: (error: HttpErrorResponse) => {
+        this.snackBar.open('Erro ao atualizar o status.', 'Fechar', {
+          duration: 2000,
+        });
+      }
     });
   }
-
   deleteElement(id: number) {
     this.dataSource = this.dataSource.filter(service => service.id !== id);
       this.ordemService.deletarUmServico(id).subscribe({
