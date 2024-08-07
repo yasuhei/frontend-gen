@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,9 +18,10 @@ import { ClientesComponent } from './componentes/servicosCliente/clientes.compon
 import { NgxMaskModule } from 'ngx-mask';
 import { ListaDeServicosComponent } from './componentes/listarServicos/lista-de-servicos/lista-de-servicos.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     AppComponent,
     ClientesComponent,
@@ -45,7 +46,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatNativeDateModule,
     NgxMaskModule.forRoot()
   ],
-  providers: [],
+  providers: [{provide: MAT_DATE_LOCALE, useValue: 'pt'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

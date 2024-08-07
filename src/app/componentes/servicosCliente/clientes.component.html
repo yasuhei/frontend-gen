@@ -11,7 +11,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" >
       <mat-label>Preço</mat-label>
       <input matInput formControlName="preco"
        type="text"
@@ -30,30 +30,35 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Data de Abertura</mat-label>
+    <mat-form-field class="grid-2" appearance="outline">
+      <mat-label>Data de abertura </mat-label>
       <input
         matInput
+        [matDatepicker]="newPaymenteDate"
         formControlName="dataAbertura"
-        type="date"
-        placeholder="Selecione a data"
       />
-      <mat-error *ngIf="userForm.get('dataAbertura')?.hasError('required')">
-        A data é obrigatória.
-      </mat-error>
-      <mat-error *ngIf="userForm.get('dataAbertura')?.hasError('pattern')">
-        Data inválida.
-      </mat-error>
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="newPaymenteDate"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #newPaymenteDate></mat-datepicker>
     </mat-form-field>
 
 
-    <mat-form-field appearance="outline">
-      <mat-label>Data final</mat-label>
-      <input matInput formControlName="dataFinalizacao" type="date" />
-      <mat-error *ngIf="userForm.get('dataFinalizacao')?.hasError('required')">
-        Data inválida.
-      </mat-error>
+    <mat-form-field class="grid-2" appearance="outline">
+      <mat-label>Data final </mat-label>
+      <input
+        matInput
+        [matDatepicker]="final"
+        formControlName="dataFinalizacao"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="final"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #final></mat-datepicker>
     </mat-form-field>
+
 
     <mat-form-field appearance="outline">
       <mat-label>Selecione um Status</mat-label>

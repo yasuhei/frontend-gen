@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ClienteService } from 'src/services/cliente.service';
+import { OrdensService } from 'src/services/ordens.service';
 
 @Component({
   selector: 'app-clientes',
@@ -18,7 +19,7 @@ export class ClientesComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private clienteService: ClienteService,
+    private ordemService: OrdensService,
     @Inject(MAT_DIALOG_DATA) public data: { id: string },
     private dialogRef: MatDialogRef<any>,
     private snackBar: MatSnackBar,
@@ -50,7 +51,7 @@ export class ClientesComponent implements OnInit {
         status: this.userForm.controls['status'].value,
         clientId: this.data.id
       }
-      this.clienteService.criarServico(body).subscribe((response) => {
+      this.ordemService.criarServico(body).subscribe((response) => {
         if(response) {
           this.dialogRef.close();
 

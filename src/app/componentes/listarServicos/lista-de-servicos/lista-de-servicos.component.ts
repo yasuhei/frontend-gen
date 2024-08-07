@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
+import { OrdensService } from 'src/services/ordens.service';
 
 @Component({
   selector: 'app-lista-de-servicos',
@@ -17,6 +18,7 @@ export class ListaDeServicosComponent implements OnInit {
   statusOptions: string[] = ['ABERTA', 'FINALIZADA', 'CANCELADA'];
 
   constructor(
+    private ordemService: OrdensService,
     private clienteService: ClienteService,
     private snackBar: MatSnackBar,
     public dialog: MatDialog,
@@ -34,7 +36,7 @@ export class ListaDeServicosComponent implements OnInit {
 
   updateStatus(id: number, status: string) {
     const body = { id, status };
-    this.clienteService.atualizarStatus(body).subscribe((response) => {
+    this.ordemService.atualizarStatus(body).subscribe((response) => {
       this.snackBar.open(`O campo status foi alterado para ${status}`, 'Fechar', {
         duration: 2000,
       });
@@ -49,7 +51,7 @@ export class ListaDeServicosComponent implements OnInit {
 
   deleteElement(id: number) {
     this.dataSource = this.dataSource.filter(service => service.id !== id);
-      this.clienteService.deletarUmServico(id).subscribe({
+      this.ordemService.deletarUmServico(id).subscribe({
       next: () => {
         this.snackBar.open(`Serviço com ID ${id} excluído`, 'Fechar', {
           duration: 2000,
@@ -70,7 +72,7 @@ export class ListaDeServicosComponent implements OnInit {
       id, status: "FECHADA"
     }
 
-    this.clienteService.atualizarStatus(body).subscribe((response) => {
+    this.ordemService.atualizarStatus(body).subscribe((response) => {
       this.snackBar.open(`O campos status foi alterado para ${status}`, 'Fechar', {
         duration: 2000,
       });
