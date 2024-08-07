@@ -58,7 +58,6 @@ export class ClientesComponent implements OnInit {
           }
         },
         error: (error) => {
-          console.error('Erro ao criar o serviço', error);
           this.snackBar.open('Falha ao criar o serviço', 'Fechar', {
             duration: 2000,
           });

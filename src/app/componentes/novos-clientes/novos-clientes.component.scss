@@ -5,6 +5,10 @@
   align-items: center;
   gap: 16px;
 }
+table {
+  width: 100%;
+
+}
 mat-form-field {
   width: 100%;
   margin-bottom: 16px;
@@ -12,4 +16,19 @@ mat-form-field {
 
 button {
   margin-top: 16px;
+}
+td {
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  td {
+      font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  td {
+      font-size: 0.65rem;
+  }
 }

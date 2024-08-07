@@ -8,7 +8,7 @@ import { ClienteUpdateService } from 'src/utils/cliente-update';
 @Component({
   selector: 'app-novos-clientes',
   templateUrl: './novos-clientes.component.html',
-  styleUrls: ['./novos-clientes.component.css']
+  styleUrls: ['./novos-clientes.component.scss']
 })
 export class NovosClientesComponent implements OnInit {
   userForm!: FormGroup;

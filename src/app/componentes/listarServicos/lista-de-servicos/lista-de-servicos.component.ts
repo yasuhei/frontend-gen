@@ -10,7 +10,7 @@ import { OrdensService } from 'src/services/ordens.service';
 @Component({
   selector: 'app-lista-de-servicos',
   templateUrl: './lista-de-servicos.component.html',
-  styleUrls: ['./lista-de-servicos.component.css']
+  styleUrls: ['./lista-de-servicos.component.scss']
 })
 export class ListaDeServicosComponent implements OnInit {
   displayedColumns: string[] = [ 'id', 'descricao', 'preco', 'dataAbertura', 'dataFinalizacao', 'status',  'delete'];
