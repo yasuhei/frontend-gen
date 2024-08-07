@@ -1,0 +1,39 @@
+
+.cliente {
+  width: 95%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding:  20px;
+}
+
+
+table {
+  width: 100%;
+}
+
+mat-card {
+  margin: 16px;
+}
+
+button {
+  margin: 0 4px;
+}
+.custom_icon {
+  color: #7fb457;
+}
+.delete {
+  color: #1361d6;
+
+}
+.text {
+  width: 100%;
+  text-align: center
+}
+.tamanhoTela {
+  height: 100vh;
+  max-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
